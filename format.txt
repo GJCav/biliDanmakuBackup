@@ -1,0 +1,53 @@
+
+-----------------------------------------------
+For pattern like: www.bilibili.com/video/avXXXX
+
+Download the page and use regex 
+<"cid=(\d+?)&aid=> (without '<''>')
+to get cid.
+
+Or use regex
+<"cid":(\d+?),\.*?"page":(\d+),>
+to get all cids of episodes.
+
+Download danmaku from URL(cookies aren't needed): 
+https://api.bilibili.com/x/v1/dm/list.so?oid=<cid>
+
+For history danmakus, 
+use this URL(cookies needed):
+https://api.bilibili.com/x/v2/dm/history?type=1&oid=<cid>&date=<yyyy-MM-dd>
+to get specific danmaku of a day
+
+use this URL(cookies needed):
+https://api.bilibili.com/x/v2/dm/history/index?type=1&oid=<cid>&month=<yyyy-MM>
+to get available danmaku list of this specific month
+
+
+
+Eg:
+For av107(https://www.bilibili.com/video/av107).
+We find cid in https://www.bilibili.com/video/av107 as 73550718.
+So we get https://api.bilibili.com/x/v1/dm/list.so?oid=73550718 as danmaku URL.
+
+History of av107
+Oldest: 2012-10-16
+URL to get history: 
+https://api.bilibili.com/x/v2/dm/history?type=1&oid=73550718&date=2012-10-16
+
+
+------------------------------------------------------
+For pattern like: www.bilibili.com/bangumi/play/epXXXXXX
+
+First download the play page.
+The use regex(without '<''>') <"epInfo":\{.*?"cid":(\d+?),>
+to get the cid.
+
+Download danmaku from URL(cookies aren't needed): 
+https://api.bilibili.com/x/v1/dm/list.so?oid=<cid>
+
+For history danmakus, use this URL:
+
+
+
+
+
