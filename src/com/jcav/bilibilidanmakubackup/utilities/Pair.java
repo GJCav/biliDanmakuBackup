@@ -1,4 +1,4 @@
-package com.jcav.bilibilidanmakubackup;
+package com.jcav.bilibilidanmakubackup.utilities;
 
 import java.util.Objects;
 

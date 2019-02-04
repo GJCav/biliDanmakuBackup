@@ -1,4 +1,4 @@
-package com.jcav.bilibilidanmakubackup;
+package com.jcav.bilibilidanmakubackup.cidtokenizer;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -74,6 +74,11 @@ public interface CidTokenizer {
      * @return the cid in this page.
      */
     public int getCid();
+
+    /**
+     * @return the aid(or bangumi id) of the url.
+     */
+    public int getAid();
 
     public default List<Integer> getCidList() {
         return Arrays.asList(getCid());

@@ -1,4 +1,4 @@
-package com.jcav.bilibilidanmakubackup;
+package com.jcav.bilibilidanmakubackup.utilities;
 
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
@@ -46,5 +46,29 @@ public final class TimeUtilities {
         cal.setTime(date);
         cal.add(Calendar.MONTH, -1);
         return cal.getTime();
+    }
+
+    public static Date msAfter(Date date, int millisecond){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.MILLISECOND, millisecond);
+        return cal.getTime();
+    }
+
+    /**
+     *
+     * @param millisecond
+     * @return millisecond -> second
+     */
+    public static double ms2s(long millisecond){
+        return millisecond / 1000.0;
+    }
+
+    /**
+     * @param millisecond
+     * @return millisecond -> minutes
+     */
+    public static double ms2m(long millisecond){
+        return ms2s(millisecond) / 60.0;
     }
 }

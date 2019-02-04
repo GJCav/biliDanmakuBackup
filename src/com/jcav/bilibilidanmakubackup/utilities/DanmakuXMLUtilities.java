@@ -1,13 +1,14 @@
-package com.jcav.bilibilidanmakubackup;
+package com.jcav.bilibilidanmakubackup.utilities;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.jcav.bilibilidanmakubackup.utilities.IOUtilities;
+import com.jcav.bilibilidanmakubackup.utilities.TimeUtilities;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 

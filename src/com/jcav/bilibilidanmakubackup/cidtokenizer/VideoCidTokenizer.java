@@ -1,4 +1,6 @@
-package com.jcav.bilibilidanmakubackup;
+package com.jcav.bilibilidanmakubackup.cidtokenizer;
+
+import com.jcav.bilibilidanmakubackup.utilities.IOUtilities;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -18,7 +20,7 @@ import java.util.stream.Collectors;
  * For instance, if url contains "p=3", then
  * this will get the cid of the third episode.
  */
-public class VideoCidTokenizer implements CidTokenizer {
+public class VideoCidTokenizer extends AbCidTokenizer {
     public static final int CODE_PAGE_OUT_OF_RANGE_ERROR = 100;
     public static final String URL_PATTERN =
             ".*www.bilibili.com/video/av(\\d+).*";
@@ -30,20 +32,19 @@ public class VideoCidTokenizer implements CidTokenizer {
             "p=(\\d+)";
 
 
-    private String url;
     private int aid = -1;
     private Map<Integer, Integer> cidMap;
     private int errorCode = CidTokenizer.CODE_BEFORE_RUN_ERROR;
     private IOException lastError = null;
     private String parseErrorHtml = null;
     private int cid = -1;
-    private int timeout = 0;
 
     /**
      * @param url - the url of the video page
      * @param timeout - 0 implies infinite timeout
      */
     public VideoCidTokenizer(String url, int timeout){
+        super(url, timeout);
         if(!url.matches(URL_PATTERN))
             throw new IllegalArgumentException("URL illegal.");
 
@@ -56,6 +57,7 @@ public class VideoCidTokenizer implements CidTokenizer {
         this(url, 0);
     }
 
+    @Override
     public int getAid(){
         if(aid != -1) return aid;
 

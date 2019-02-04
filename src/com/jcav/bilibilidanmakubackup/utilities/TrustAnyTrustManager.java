@@ -1,4 +1,4 @@
-package com.jcav.bilibilidanmakubackup;
+package com.jcav.bilibilidanmakubackup.utilities;
 
 import javax.net.ssl.X509TrustManager;
 import java.security.cert.CertificateException;
