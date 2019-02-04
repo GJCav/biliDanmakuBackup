@@ -45,7 +45,7 @@ public class BackupHistory {
         }
 
         if(TimeUtilities.parse(start, "yyyy-MM")
-                .compareTo(TimeUtilities.parse(end, "yyyy-MM")) < 0){
+                .compareTo(TimeUtilities.parse(end, "yyyy-MM")) > 0){
             throw new IllegalArgumentException("Syntax error");
         }
     }
@@ -142,6 +142,14 @@ public class BackupHistory {
                         System.exit(0);
                     }
 
+                    if(code != -509){
+                        System.out.println("unknown error.");
+                        fldWriter.println(xml);
+                        fldWriter.close();
+                        scsWriter.close();
+                        System.exit(0);
+                    }
+
                     System.out.println("Request too frequently.");
                     System.out.println(
                             String.format(
@@ -149,16 +157,13 @@ public class BackupHistory {
                                     TimeUtilities.ms2m(delayAfterTooFrequently),
                                     TimeUtilities.format(
                                             TimeUtilities.msAfter(new Date(), delayAfterTooFrequently),
-                                            "HH-mm-ss"
+                                            "HH:mm:ss"
                                     )
                             )
                     );
                     delayAfterTooFrequently();
                     // reset to yesterday
-                    day = TimeUtilities.format(
-                            TimeUtilities.yesterday(TimeUtilities.parse(day, "yyyy-MM")),
-                            "yyyy-MM"
-                    );
+                    curMonth = TimeUtilities.yesterday(curMonth);
                     continue;
                 }
 
