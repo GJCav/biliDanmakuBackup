@@ -33,31 +33,48 @@ public class Main {
         String datfStr = stg.getProperty("-datf", "1200000");
         Global.delayAfterTooFrequently = Integer.valueOf(datfStr);
 
-        if(stg.containsKey("-b")){
-            boolean valid = stg.containsKey("-st");
-            valid &= stg.containsKey("-ed");
-            valid &= stg.containsKey("-url");
-
-            if(!valid) {
-                System.out.println("Syntax error.");
-                System.exit(0);
-            }
-
-            String url = stg.getProperty("-url");
-            String start = stg.getProperty("-st");
-            String end = stg.getProperty("-ed");
-
+        if(stg.containsKey("-cookie")) {
             String cookiePath = stg.getProperty("-cookie");
             String cookie = CookieUtilities.readCookieFromFile(cookiePath);
             Global.cookie = cookie;
+        }
 
+        if(stg.containsKey("-b")){
             if(stg.containsKey("-history")){
+                check(stg, "-url", "-st", "-ed", "-cookie");
+
                 BackupHistory backup = new BackupHistory(
-                        url,
-                        start,
-                        end
+                        stg.getProperty("-url"),
+                        stg.getProperty("-st"),
+                        stg.getProperty("-ed")
                 );
                 backup.start();
+            }else if(stg.containsKey("-single")){
+                check(stg, "-url", "-date", "-cookie", "-out");
+
+                BackupSingleDay single = new BackupSingleDay(
+                        stg.getProperty("-url"),
+                        stg.getProperty("-date"),
+                        stg.getProperty("-out")
+                );
+                single.start();
+            }else if(stg.containsKey("-current")){
+                check(stg, "-url", "-out");
+
+                BackupCurrent backup = new BackupCurrent(
+                        stg.getProperty("-url"),
+                        stg.getProperty("-out")
+                );
+                backup.start();
+            }
+        }
+    }
+
+    private static void check(Properties stg, String ...args){
+        for(String s : args){
+            if(!stg.containsKey(s)){
+                System.out.println("Syntax error.");
+                System.exit(0);
             }
         }
     }

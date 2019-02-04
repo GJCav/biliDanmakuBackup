@@ -1,6 +1,8 @@
 package com.jcav.bilibilidanmakubackup;
 
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.jcav.bilibilidanmakubackup.cidtokenizer.CidTokenizer;
 import com.jcav.bilibilidanmakubackup.cidtokenizer.TokenizerGuilder;
 import com.jcav.bilibilidanmakubackup.cidtokenizer.VideoCidTokenizer;
@@ -50,6 +52,11 @@ public class BackupHistory {
 
     public void start(){
         CidTokenizer cidToken = TokenizerGuilder.ins.getCidTokenizerByURL(url, Global.timeout);
+        if(cidToken == null){
+            System.out.println("There is no proper CidTokenizer. Sorry.");
+            System.exit(0);
+        }
+
         int cid = cidToken.getCid();
 
         if(cid == -1){
@@ -126,6 +133,15 @@ public class BackupHistory {
                 }
 
                 if(xml.startsWith("{") && xml.endsWith("}")){
+                    JsonObject errObj = new JsonParser().parse(xml).getAsJsonObject();
+                    System.out.println("Error xml: " + xml);
+
+                    int code = errObj.get("code").getAsInt();
+                    if(code == -101){
+                        System.out.println("Reset cookies...");
+                        System.exit(0);
+                    }
+
                     System.out.println("Request too frequently.");
                     System.out.println(
                             String.format(

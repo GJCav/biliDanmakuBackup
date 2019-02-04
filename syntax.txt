@@ -1,14 +1,15 @@
 BETA VERSION 0.1
 
 Syantax:
-java -jar backup.jar -b <mode> -url=<-url> -st=<-st> -ed=<-ed> [op1, op2, ...]
+java -jar backup.jar -b <mode> -url=<-url> <args> [op1, op2, ...]
 REM
 <mode>
-REM		-history backup history (-cookie needed)
+	-history backup history (-cookie needed)
+	-single backup single day (-cookie needed)
+	-current backup current danmaku
 <url>
 	-url video url, just for www.bilibili.com/video/XXXX
-<-st> depend on <mode>
-<-ed> depend on <mode>
+<args> depend on <mode>
 [options]
 	-delay=<millisecond>   delay time between two downloads
 	-timeout=<millisecond> download timeout
@@ -16,5 +17,20 @@ REM		-history backup history (-cookie needed)
     -datf=<millisecond>    delay after receive a "Request too frequently" message.
 
 ---- history backup ------
+Syntax:
+java -jar backup.jar -b -history -url=<-url> -st=<-st> -ed=<-ed> -cookie=<COOKIE_PATH> [op1, op2, ...]
 <-st> start month, in yyyy-MM format.
 <-ed> end month, in yyyy-MM format.
+
+---- single backup ----
+Syntax:
+java -jar backup.jar -b -single -url=<-url> -date=<yyyy-MM-dd> -out=<OUTPUT_PATH> -cookie=<COOKIE_PATH>
+
+---- current backup
+Syntax:
+java -jar backup.jar -b -current -url=<-url> -out=<OUTPUT_PATH> [op1, op2, ...]
+
+
+
+
+
