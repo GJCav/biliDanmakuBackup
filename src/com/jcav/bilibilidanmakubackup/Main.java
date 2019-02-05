@@ -24,14 +24,20 @@ public class Main {
             }
         }
 
-        String timeoutStr = stg.getProperty("-timeout", "0");
-        Global.timeout = Integer.valueOf(timeoutStr);
+        if(stg.containsKey("-timeout")) {
+            String timeoutStr = stg.getProperty("-timeout");
+            Global.timeout = Integer.valueOf(timeoutStr);
+        }
 
-        String delayStr = stg.getProperty("-delay", "0");
-        Global.delay = Integer.valueOf(delayStr);
+        if(stg.containsKey("-delay")) {
+            String delayStr = stg.getProperty("-delay");
+            Global.delay = Integer.valueOf(delayStr);
+        }
 
-        String datfStr = stg.getProperty("-datf", "1200000");
-        Global.delayAfterTooFrequently = Integer.valueOf(datfStr);
+        if(stg.containsKey("-datf")) {
+            String datfStr = stg.getProperty("-datf");
+            Global.delayAfterTooFrequently = Integer.valueOf(datfStr);
+        }
 
         if(stg.containsKey("-cookie")) {
             String cookiePath = stg.getProperty("-cookie");

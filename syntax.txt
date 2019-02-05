@@ -1,8 +1,8 @@
-BETA VERSION 0.1
+BETA VERSION 0.2
 
 Syantax:
 java -jar backup.jar -b <mode> -url=<-url> <args> [op1, op2, ...]
-REM
+
 <mode>
 	-history backup history (-cookie needed)
 	-single backup single day (-cookie needed)
@@ -14,7 +14,7 @@ REM
 	-delay=<millisecond>   delay time between two downloads
 	-timeout=<millisecond> download timeout
 	-cookie=<FILE_PATH>    provide cookie file if it's needed. The cookie file should be in format of Chrome.
-    -datf=<millisecond>    delay after receive a "Request too frequently" message.
+    	-datf=<millisecond>    delay after receive a "Request too frequently" message.
 
 ---- history backup ------
 Syntax:
