@@ -54,6 +54,7 @@ for xmlFile in xmlList:
 	
 	print('Add {: >4} danmaku(s) from file "{}"'.format(cnt, xmlFile))
 
+print('There are {} danmaku(s) in total.'.format(len(danmakuMap)))
 print('Save result.')
 
 outStr = xmlPre.format(min(1000, len(danmakuMap)))
