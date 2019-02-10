@@ -49,12 +49,21 @@ public class Main {
             if(stg.containsKey("-history")){
                 check(stg, "-url", "-st", "-ed", "-cookie");
 
-                BackupHistory backup = new BackupHistory(
-                        stg.getProperty("-url"),
-                        stg.getProperty("-st"),
-                        stg.getProperty("-ed")
-                );
-                backup.start();
+                if(stg.containsKey("-smart")){
+                    BackupHistorySmart backup = new BackupHistorySmart(
+                            stg.getProperty("-url"),
+                            stg.getProperty("-st"),
+                            stg.getProperty("-ed")
+                    );
+                    backup.start();
+                }else {
+                    BackupHistory backup = new BackupHistory(
+                            stg.getProperty("-url"),
+                            stg.getProperty("-st"),
+                            stg.getProperty("-ed")
+                    );
+                    backup.start();
+                }
             }else if(stg.containsKey("-single")){
                 check(stg, "-url", "-date", "-cookie", "-out");
 

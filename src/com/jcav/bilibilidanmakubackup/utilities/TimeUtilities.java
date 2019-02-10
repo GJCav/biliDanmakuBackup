@@ -71,4 +71,26 @@ public final class TimeUtilities {
     public static double ms2m(long millisecond){
         return ms2s(millisecond) / 60.0;
     }
+
+    public static Date lastDayOfMonth(Date month){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(month);
+        int maxDay = cal.getMaximum(Calendar.DAY_OF_MONTH);
+        cal.set(Calendar.DAY_OF_MONTH, maxDay);
+        return cal.getTime();
+    }
+
+    public static Date someDaysAfter(Date date, int day){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, day);
+        return cal.getTime();
+    }
+
+    public static Date firstDayOfThisMonth(Date curMonth) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(curMonth);
+        cal.set(Calendar.DAY_OF_MONTH, 1);
+        return cal.getTime();
+    }
 }

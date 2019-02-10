@@ -43,6 +43,7 @@ java -jar backup.jar -b -history -url=<-url> -st=<-st> -ed=<-ed> -cookie=<COOKIE
 	-timeout=<millisecond> usually, this can be ignored.
 	-cookie=<FILE_PATH>    required.
 	-datf=<millisecond>    usually, this can be ignored.
+	-smart 				   this will use a multiplication algorithm to accelerate the                    		   process.(recommanded.)
 ```
 
 此功能会把st到ed中的每一天的弹幕都备份下来。
