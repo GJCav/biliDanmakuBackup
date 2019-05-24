@@ -18,6 +18,13 @@ public class BackupCurrent {
     public BackupCurrent(String url, String outDir) {
         this.url = url;
         this.outDir = outDir;
+
+        if(IOUtilities.hasIllegalChar(outDir)){
+            System.out.println("Argument Error: '-out="+outDir+ "'");
+            System.out.println("Chars below are illegal in system file system. Don't use them:");
+            System.out.println("    " + IOUtilities.ILLEGAL_PATH_CHARS);
+            System.exit(0);
+        }
     }
 
     public void start(){
@@ -40,6 +47,10 @@ public class BackupCurrent {
 
         String date = TimeUtilities.format(new Date(), "yyyy-MM-dd");
         String xmlName = "av" + cidToken.getAid() + "_cur" + date + ".xml";
+        File outPos = new File(this.outDir);
+        if(!outPos.exists()){
+            outPos.mkdirs();
+        }
         File outFile = new File(this.outDir, xmlName);
         if(outFile.exists()){
             System.out.println("Backup existed. At: " + outFile.toPath());

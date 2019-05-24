@@ -17,6 +17,24 @@ import java.util.zip.Inflater;
 import java.util.zip.InflaterInputStream;
 
 public final class IOUtilities {
+    public static String ILLEGAL_PATH_CHARS = "\\/:?\"<>|";
+    public static boolean hasIllegalChar(String path){
+        for(int index = 0;index < path.length();index++){
+            switch (path.charAt(index)){
+                case '\\':
+                case '/':
+                case ':':
+                case '?':
+                case '"':
+                case '<':
+                case '>':
+                case '|':
+                    return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * @param url
      * @return the host of the url, an empty string if matching is failed.

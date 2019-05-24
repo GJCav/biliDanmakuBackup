@@ -24,6 +24,13 @@ public class BackupSingleDay {
         if(!date.matches("\\d{4}-\\d{2}-\\d{2}")){
             throw new IllegalArgumentException("Syntax error.");
         }
+
+        if(IOUtilities.hasIllegalChar(outDir)){
+            System.out.println("Argument illegal: '-out="+outDir+ "'");
+            System.out.println("Chars below are illegal in system file system. Don't use them:");
+            System.out.println("    " + IOUtilities.ILLEGAL_PATH_CHARS);
+            System.exit(0);
+        }
     }
 
     public void start(){
@@ -45,6 +52,8 @@ public class BackupSingleDay {
         }
 
         String xmlName = "av" + cidToken.getAid() + "_" + date + ".xml";
+        File outDirPos = new File(this.outDir);
+        if(!outDirPos.exists()) outDirPos.mkdirs();
         File outFile = new File(this.outDir, xmlName);
         if(outFile.exists()){
             System.out.println("Backup existed. At: " + outFile.toPath());
