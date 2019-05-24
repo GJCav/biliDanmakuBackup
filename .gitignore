@@ -8,3 +8,4 @@ cookies.json
 /src/com/jcav/bilibilidanmakubackup/TestMain.java
 *.MF
 *.xlsx
+*.jar
