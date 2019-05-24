@@ -160,7 +160,7 @@ gson - 但说实话我记不得我哪用了gson...<-_<-
 
 ## License
 
-就这破玩意还要啥license。
+~~就这破玩意还要啥license。~~
 
-
+我反悔了，遵循GPLv3
 
