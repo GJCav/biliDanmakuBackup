@@ -1,3 +1,7 @@
+# 此项目已被废弃
+
+该项目是作者高中的时候编写的，已经过去很多年了，现在主力语言也从Java专向了Python/JS/C++，B站弹幕相关API也有了很大变化，这个项目已经完全不使用了。
+
 # Bilibili Danmaku backup
 
 用于备份bilibili的弹幕。
